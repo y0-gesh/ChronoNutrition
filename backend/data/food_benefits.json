@@ -1,0 +1,278 @@
+[
+  {
+    "food_id": "banana",
+    "title": "Immediate Energy Booster",
+    "description": "High carbohydrate content in the form of sucrose, fructose, and glucose provides quick, sustainable energy.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3355124/"
+  },
+  {
+    "food_id": "banana",
+    "title": "Supports Heart & Muscle Function",
+    "description": "Rich in potassium, which helps regulate heartbeat, fluid balance, and muscle contractions, preventing cramps during exercise.",
+    "evidence_links": "https://www.nih.gov/"
+  },
+  {
+    "food_id": "apple",
+    "title": "Improves Gut Health",
+    "description": "Pectin acts as a prebiotic, feeding the friendly bacteria in your gut and improving overall digestion.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4852413/"
+  },
+  {
+    "food_id": "apple",
+    "title": "Supports Cardiovascular Health",
+    "description": "Soluble fiber helps lower blood cholesterol levels, while polyphenols like quercetin reduce blood pressure.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/22400181/"
+  },
+  {
+    "food_id": "orange",
+    "title": "Enhances Immune System",
+    "description": "Vitamin C stimulates the production of white blood cells and acts as a powerful antioxidant, protecting cells from damage.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/29099763/"
+  },
+  {
+    "food_id": "orange",
+    "title": "Improves Iron Absorption",
+    "description": "Consuming Vitamin C alongside iron-rich plant foods significantly enhances non-heme iron absorption.",
+    "evidence_links": "https://www.who.int/"
+  },
+  {
+    "food_id": "kiwi",
+    "title": "Improves Sleep Quality",
+    "description": "Studies show kiwi consumption before bed improves sleep onset, duration, and efficiency due to high serotonin and antioxidant levels.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/21669584/"
+  },
+  {
+    "food_id": "kiwi",
+    "title": "Aids Protein Digestion",
+    "description": "Contains actinidin, a natural proteolytic enzyme that helps break down proteins and reduces bloating.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/20459313/"
+  },
+  {
+    "food_id": "blueberries",
+    "title": "Boosts Cognitive Function",
+    "description": "Anthocyanins interact with aging neurons to improve signaling, enhance short-term memory, and delay brain aging.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2850944/"
+  },
+  {
+    "food_id": "blueberries",
+    "title": "Reduces DNA Damage",
+    "description": "High antioxidant levels help neutralize free radicals that damage DNA, assisting in anti-aging and cancer prevention.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/17634269/"
+  },
+  {
+    "food_id": "watermelon",
+    "title": "Reduces Muscle Soreness",
+    "description": "Contains L-citrulline, an amino acid that improves nitric oxide production, boosts circulation, and reduces exercise recovery times.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/23870890/"
+  },
+  {
+    "food_id": "watermelon",
+    "title": "Optimal Hydration",
+    "description": "High water content combined with electrolytes restores hydration levels and regulates body temperature in summer.",
+    "evidence_links": "https://www.usda.gov/"
+  },
+  {
+    "food_id": "dates",
+    "title": "Sustained Natural Energy",
+    "description": "Dense in natural sugars but balanced with fiber, offering an immediate energy boost without the sharp blood glucose crashes.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3992385/"
+  },
+  {
+    "food_id": "dates",
+    "title": "Aids Brain Health",
+    "description": "Contains protective compounds that help lower inflammatory markers in the brain (like IL-6) and reduce plaques associated with cognitive decline.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4994445/"
+  },
+  {
+    "food_id": "pomegranate",
+    "title": "Improves Blood Circulation",
+    "description": "Antioxidants support nitric oxide bioavailability, improving blood vessel dilation, reducing arterial stiffness, and lowering blood pressure.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/28608832/"
+  },
+  {
+    "food_id": "pomegranate",
+    "title": "Powerful Anti-inflammatory",
+    "description": "Punicalagins have been shown to reduce inflammatory activity in the digestive tract, breast cancer cells, and colon cancer cells.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/23573120/"
+  },
+  {
+    "food_id": "spinach",
+    "title": "Reduces Fatigue & Builds Muscle Strength",
+    "description": "Nitrates in spinach increase muscle mitochondrial efficiency, requiring less oxygen and boosting stamina during workouts.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/21284861/"
+  },
+  {
+    "food_id": "spinach",
+    "title": "Protects Eye Health",
+    "description": "Abundant in zeaxanthin and lutein, carotenoids that prevent macular degeneration and blue-light eye fatigue.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3705341/"
+  },
+  {
+    "food_id": "broccoli",
+    "title": "Supports Liver Detoxification",
+    "description": "Glucosinolates break down into sulforaphane, which activates Phase II liver detoxification pathways, clearing carcinogens.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4432495/"
+  },
+  {
+    "food_id": "broccoli",
+    "title": "Promotes Healthy Gut Microbiome",
+    "description": "Bioactive compounds reduce gut inflammation and support gut wall integrity, reducing food sensitivity reactions.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/29035252/"
+  },
+  {
+    "food_id": "carrot",
+    "title": "Improves Night Vision",
+    "description": "Beta-carotene converts to retinal, combining with opsin to create rhodopsin, the light-absorbing molecule critical for dim-light vision.",
+    "evidence_links": "https://www.nih.gov/"
+  },
+  {
+    "food_id": "carrot",
+    "title": "Enhances Skin Elasticity",
+    "description": "Carotenoids guard the dermis from UV rays and help sustain moisture levels, supporting natural anti-aging effects.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/22465691/"
+  },
+  {
+    "food_id": "beetroot",
+    "title": "Boosts Athletic Performance",
+    "description": "Nitrates convert to nitric oxide, widening blood vessels to deliver oxygenated blood directly to active muscles.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/23612502/"
+  },
+  {
+    "food_id": "beetroot",
+    "title": "Lowers Blood Pressure",
+    "description": "Nitrates produce rapid vasodilation, easing tension inside blood vessels and reducing systolic blood pressure values.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4288952/"
+  },
+  {
+    "food_id": "sweet_potato",
+    "title": "Sustained Sports Fuel",
+    "description": "Complex starches digest slowly, feeding muscles a steady line of glucose for high-intensity or endurance training.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4609785/"
+  },
+  {
+    "food_id": "sweet_potato",
+    "title": "Regulates Blood Sugar",
+    "description": "Fiber slows digestion, stabilizing post-meal glucose and improving insulin response compared to regular potatoes.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/15671191/"
+  },
+  {
+    "food_id": "cucumber",
+    "title": "Optimal Summer Hydration",
+    "description": "With over 95% water content, cucumbers act as a refreshing internal coolant and natural diuretic to flush toxins.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/23097409/"
+  },
+  {
+    "food_id": "cucumber",
+    "title": "Supports Collagen Production",
+    "description": "Contains silica, a trace mineral essential for synthesising collagen, maintaining skin firmness, and building strong joints.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4938278/"
+  },
+  {
+    "food_id": "turmeric",
+    "title": "Inhibits Systemic Inflammation",
+    "description": "Curcumin blocks NF-kB, a molecule that travels into nuclei of cells and activates genes related to chronic inflammation.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5664031/"
+  },
+  {
+    "food_id": "turmeric",
+    "title": "Reduces Joint Pain (Arthritis)",
+    "description": "Studies demonstrate that curcumin reduces joint swelling and morning stiffness as effectively as common anti-inflammatory medications.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/22407462/"
+  },
+  {
+    "food_id": "ginger",
+    "title": "Relieves Indigestion & Bloating",
+    "description": "Speeds up stomach emptying, preventing the fermentation of gases and reducing symptoms of acid reflux or indigestion.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/18403946/"
+  },
+  {
+    "food_id": "ginger",
+    "title": "Alleviates Nausea",
+    "description": "Acts as an effective anti-nausea treatment for pregnancy, motion sickness, and post-operative recovery.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/24490057/"
+  },
+  {
+    "food_id": "garlic",
+    "title": "Combats the Common Cold",
+    "description": "Allicin destroys viruses and bacteria; daily intake has been proven to lower occurrence and duration of colds by 60%.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/11697022/"
+  },
+  {
+    "food_id": "garlic",
+    "title": "Reduces Blood Pressure",
+    "description": "Stimulates the synthesis of nitric oxide and hydrogen sulfide, inducing smooth vascular muscle relaxation.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/26764326/"
+  },
+  {
+    "food_id": "cinnamon",
+    "title": "Lowers Insulin Resistance",
+    "description": "Improves sensitivity to the insulin hormone, allowing cells to take up glucose more effectively, lowering blood sugars.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/24019277/"
+  },
+  {
+    "food_id": "cinnamon",
+    "title": "Protects Against Neurodegeneration",
+    "description": "Helps block the buildup of tau proteins in neurons, an anatomical hallmark of Alzheimer's disease.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3105657/"
+  },
+  {
+    "food_id": "black_pepper",
+    "title": "Enhances Nutrient Absorption",
+    "description": "Piperine increases the absorption of curcumin (from turmeric) by up to 2000% and improves uptake of beta-carotene and selenium.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3918523/"
+  },
+  {
+    "food_id": "black_pepper",
+    "title": "Improves Brain Chemistry",
+    "description": "Blocks enzymes that break down neurotransmitters like serotonin, dopamine, and norepinephrine, stabilizing mood.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/18639970/"
+  },
+  {
+    "food_id": "almonds",
+    "title": "Strong Skin Health & Protection",
+    "description": "Vitamin E is a lipid-soluble antioxidant that protects cell lipids from oxidation, reducing ultraviolet skin damage.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/11340114/"
+  },
+  {
+    "food_id": "almonds",
+    "title": "Controls Blood Sugar levels",
+    "description": "High magnesium content helps improve insulin performance, assisting in blood sugar regulation.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3820055/"
+  },
+  {
+    "food_id": "walnuts",
+    "title": "Rich in Plant Omega-3s",
+    "description": "Contains more omega-3 fat than any other tree nut, reducing inflammation and supporting optimal cardiovascular flow.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4282289/"
+  },
+  {
+    "food_id": "walnuts",
+    "title": "Supports Brain Function",
+    "description": "Polyphenols and polyunsaturated fats lower oxidative strain and inflammation in brain cells, reinforcing memory.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7071526/"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "title": "Relaxes Muscles & Calms Nervous System",
+    "description": "Exceedingly high in magnesium, which keeps calcium out of nerve cells, relaxing blood vessels and skeletal muscles.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5637834/"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "title": "Aids Quality Sleep",
+    "description": "Rich source of tryptophan, an amino acid that converts into serotonin and then melatonin, the sleep-regulating hormone.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/16053539/"
+  },
+  {
+    "food_id": "chia_seeds",
+    "title": "Promotes Satiety & Weight Loss",
+    "description": "Soluble fiber absorbs up to 12 times its weight in water, expanding in the stomach to delay digestion and prolong fullness.",
+    "evidence_links": "https://pubmed.ncbi.nlm.nih.gov/20045837/"
+  },
+  {
+    "food_id": "chia_seeds",
+    "title": "Enhances Bone Density",
+    "description": "Extremely high in calcium, phosphorus, and magnesium, exceeding the mineral density of dairy products gram-for-gram.",
+    "evidence_links": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4926888/"
+  }
+]

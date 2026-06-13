@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
 
 export interface Food {
   id: string;
@@ -110,35 +110,51 @@ export async function getFoods(category?: string, search?: string): Promise<Food
   if (search) params.append("search", search);
   const res = await fetch(`${API_BASE}/foods?${params.toString()}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch foods");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
 // Fetch food detail
 export async function getFoodDetail(id: string): Promise<FoodDetail> {
   const res = await fetch(`${API_BASE}/foods/${id}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch food details");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
 // Fetch recommendations based on goal
 export async function getRecommendations(goal: string): Promise<Recommendation[]> {
   const res = await fetch(`${API_BASE}/recommendations?goal=${encodeURIComponent(goal)}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch recommendations");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
 // Fetch deficiencies from symptoms
 export async function analyzeDeficiencies(symptoms: string): Promise<DeficiencyResult> {
   const res = await fetch(`${API_BASE}/deficiencies?symptoms=${encodeURIComponent(symptoms)}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to analyze deficiencies");
-  return res.json();
+  const json = await res.json();
+  const data = json.data;
+  return {
+    symptoms_analyzed: data.symptoms_analyzed,
+    likely_deficiencies: data.possible_nutritional_factors_associated_with_symptoms || [],
+    summaries: (data.summaries || []).map((s: any) => ({
+      symptom: s.symptom,
+      likely_deficiencies: s.possible_nutritional_factors_associated_with_symptoms || [],
+      reasoning: s.reasoning
+    })),
+    recommended_foods: data.recommended_foods || [],
+    medical_disclaimer: data.medical_disclaimer
+  };
 }
 
 // Fetch synergistic combinations
 export async function getCombinations(): Promise<Synergy[]> {
   const res = await fetch(`${API_BASE}/combinations`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch combinations");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
 // Generate planner
@@ -151,7 +167,8 @@ export async function getPlanner(
   const params = new URLSearchParams({ goal, activity, age: age.toString(), gender });
   const res = await fetch(`${API_BASE}/planner?${params.toString()}`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to generate planner");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }
 
 // Send chat message
@@ -162,5 +179,6 @@ export async function sendChatMessage(message: string): Promise<ChatResponse> {
     body: JSON.stringify({ message }),
   });
   if (!res.ok) throw new Error("Failed to send chat message");
-  return res.json();
+  const json = await res.json();
+  return json.data;
 }

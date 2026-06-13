@@ -1,0 +1,645 @@
+[
+  {
+    "food_id": "banana",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "banana",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "1 medium banana / 150g sweet potato",
+    "reasons": [
+      "Excellent complex carb source to refuel muscle glycogen post-exercise."
+    ]
+  },
+  {
+    "food_id": "banana",
+    "goal": "sleep",
+    "score": 5,
+    "quantity": "1 banana",
+    "reasons": [
+      "Contains potassium and magnesium which act as natural muscle relaxants."
+    ]
+  },
+  {
+    "food_id": "apple",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "orange",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "orange",
+    "goal": "immunity",
+    "score": 8,
+    "quantity": "100g",
+    "reasons": [
+      "Rich in Vitamin C (53.2 mg) stimulating white blood cell production."
+    ]
+  },
+  {
+    "food_id": "orange",
+    "goal": "skin_health",
+    "score": 7,
+    "quantity": "1 fruit",
+    "reasons": [
+      "Vitamin C boosts collagen synthesis, preserving skin structure and elasticity."
+    ]
+  },
+  {
+    "food_id": "kiwi",
+    "goal": "weight_loss",
+    "score": 11,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "High soluble/insoluble fiber enhances gut satiety.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "kiwi",
+    "goal": "sleep",
+    "score": 10,
+    "quantity": "2 kiwis before bed",
+    "reasons": [
+      "Serotonin and antioxidants improve sleep onset and sleep duration."
+    ]
+  },
+  {
+    "food_id": "kiwi",
+    "goal": "immunity",
+    "score": 8,
+    "quantity": "100g",
+    "reasons": [
+      "Rich in Vitamin C (92.7 mg) stimulating white blood cell production."
+    ]
+  },
+  {
+    "food_id": "kiwi",
+    "goal": "digestion",
+    "score": 8,
+    "quantity": "1-2 kiwis",
+    "reasons": [
+      "Actinidin enzyme aids the rapid breakdown of dietary proteins."
+    ]
+  },
+  {
+    "food_id": "blueberries",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "blueberries",
+    "goal": "focus",
+    "score": 10,
+    "quantity": "1 cup (150g)",
+    "reasons": [
+      "Anthocyanin antioxidants cross the blood-brain barrier, boosting cognitive signals."
+    ]
+  },
+  {
+    "food_id": "watermelon",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "dates",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "dates",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (6.7g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "pomegranate",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "pomegranate",
+    "goal": "heart_health",
+    "score": 8,
+    "quantity": "1 cup arils / 150ml juice",
+    "reasons": [
+      "Punicalagins support nitric oxide synthesis, reducing blood pressure and arterial stiffness."
+    ]
+  },
+  {
+    "food_id": "pomegranate",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (4.0g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "pomegranate",
+    "goal": "skin_health",
+    "score": 7,
+    "quantity": "1 fruit",
+    "reasons": [
+      "Vitamin C boosts collagen synthesis, preserving skin structure and elasticity."
+    ]
+  },
+  {
+    "food_id": "spinach",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "spinach",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 2.9g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "spinach",
+    "goal": "immunity",
+    "score": 8,
+    "quantity": "100g",
+    "reasons": [
+      "Rich in Vitamin C (28.1 mg) stimulating white blood cell production."
+    ]
+  },
+  {
+    "food_id": "broccoli",
+    "goal": "weight_loss",
+    "score": 11,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "High soluble/insoluble fiber enhances gut satiety.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "broccoli",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 2.8g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "broccoli",
+    "goal": "immunity",
+    "score": 14,
+    "quantity": "100g steamed",
+    "reasons": [
+      "Rich in Vitamin C (89.2 mg) stimulating white blood cell production.",
+      "Cruciferous sulforaphane supports cellular defenses and liver pathways."
+    ]
+  },
+  {
+    "food_id": "carrot",
+    "goal": "weight_loss",
+    "score": 11,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "High soluble/insoluble fiber enhances gut satiety.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "carrot",
+    "goal": "skin_health",
+    "score": 8,
+    "quantity": "100g raw",
+    "reasons": [
+      "Beta-carotene converts to retinol, maintaining skin repair and cellular turn-over."
+    ]
+  },
+  {
+    "food_id": "beetroot",
+    "goal": "weight_loss",
+    "score": 11,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "High soluble/insoluble fiber enhances gut satiety.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "beetroot",
+    "goal": "heart_health",
+    "score": 8,
+    "quantity": "100g raw/steamed or juiced",
+    "reasons": [
+      "Nitrates act as a powerful vasodilator, relaxing arterial walls and lowering pressure."
+    ]
+  },
+  {
+    "food_id": "sweet_potato",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "sweet_potato",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "1 medium banana / 150g sweet potato",
+    "reasons": [
+      "Excellent complex carb source to refuel muscle glycogen post-exercise."
+    ]
+  },
+  {
+    "food_id": "cucumber",
+    "goal": "weight_loss",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High water content assists in natural hydration and calorie control.",
+      "Low caloric density allows volume eating without energy surpluses."
+    ]
+  },
+  {
+    "food_id": "turmeric",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "turmeric",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 9.7g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "turmeric",
+    "goal": "immunity",
+    "score": 18,
+    "quantity": "1-2 cloves raw / 5g ginger extract / 1/2 tsp golden spice",
+    "reasons": [
+      "Rich in Vitamin C (25.9 mg) stimulating white blood cell production.",
+      "Bioactive organosulfur / phenolic agents exhibit potent antiviral and antimicrobial properties."
+    ]
+  },
+  {
+    "food_id": "turmeric",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (22.7g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "ginger",
+    "goal": "immunity",
+    "score": 10,
+    "quantity": "1-2 cloves raw / 5g ginger extract / 1/2 tsp golden spice",
+    "reasons": [
+      "Bioactive organosulfur / phenolic agents exhibit potent antiviral and antimicrobial properties."
+    ]
+  },
+  {
+    "food_id": "ginger",
+    "goal": "digestion",
+    "score": 9,
+    "quantity": "5g ginger slice",
+    "reasons": [
+      "Accelerates gastric emptying and eases nausea/bloating."
+    ]
+  },
+  {
+    "food_id": "garlic",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 6.4g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "garlic",
+    "goal": "immunity",
+    "score": 18,
+    "quantity": "1-2 cloves raw / 5g ginger extract / 1/2 tsp golden spice",
+    "reasons": [
+      "Rich in Vitamin C (31.2 mg) stimulating white blood cell production.",
+      "Bioactive organosulfur / phenolic agents exhibit potent antiviral and antimicrobial properties."
+    ]
+  },
+  {
+    "food_id": "cinnamon",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "cinnamon",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 4.0g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "cinnamon",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (53.1g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "black_pepper",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "black_pepper",
+    "goal": "muscle_gain",
+    "score": 5,
+    "quantity": "100g",
+    "reasons": [
+      "Provides 10.4g of plant protein per 100g."
+    ]
+  },
+  {
+    "food_id": "black_pepper",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (25.3g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "muscle_gain",
+    "score": 9,
+    "quantity": "30g (handful)",
+    "reasons": [
+      "Provides 21.2g of plant protein per 100g.",
+      "Rich in healthy fats and dense amino acids supporting tissue recovery."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "focus",
+    "score": 7,
+    "quantity": "30g",
+    "reasons": [
+      "Vitamin E and Zinc protect neural tissue from cellular oxidative stress."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "heart_health",
+    "score": 5,
+    "quantity": "30g",
+    "reasons": [
+      "Monounsaturated and polyunsaturated fats help reduce LDL cholesterol."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (12.5g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "almonds",
+    "goal": "skin_health",
+    "score": 9,
+    "quantity": "30g (preferably soaked)",
+    "reasons": [
+      "Packed with Vitamin E which protects dermal lipids from UV damage."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "muscle_gain",
+    "score": 9,
+    "quantity": "30g (handful)",
+    "reasons": [
+      "Provides 15.2g of plant protein per 100g.",
+      "Rich in healthy fats and dense amino acids supporting tissue recovery."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "sleep",
+    "score": 8,
+    "quantity": "3-4 kernels",
+    "reasons": [
+      "Contains natural plant-based melatonin and healthy fats for cellular rest."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "focus",
+    "score": 9,
+    "quantity": "30g",
+    "reasons": [
+      "Omega-3 (ALA) is critical for structural brain lipids and cognitive agility."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "heart_health",
+    "score": 5,
+    "quantity": "30g",
+    "reasons": [
+      "Monounsaturated and polyunsaturated fats help reduce LDL cholesterol."
+    ]
+  },
+  {
+    "food_id": "walnuts",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (6.7g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "weight_loss",
+    "score": 4,
+    "quantity": "100g",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "muscle_gain",
+    "score": 9,
+    "quantity": "30g (handful)",
+    "reasons": [
+      "Provides 30.2g of plant protein per 100g.",
+      "Rich in healthy fats and dense amino acids supporting tissue recovery."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "sleep",
+    "score": 9,
+    "quantity": "30g",
+    "reasons": [
+      "Rich source of tryptophan which converts to serotonin and melatonin."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "focus",
+    "score": 7,
+    "quantity": "30g",
+    "reasons": [
+      "Vitamin E and Zinc protect neural tissue from cellular oxidative stress."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "heart_health",
+    "score": 5,
+    "quantity": "30g",
+    "reasons": [
+      "Monounsaturated and polyunsaturated fats help reduce LDL cholesterol."
+    ]
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (6.0g) feeds healthy gut microflora."
+    ]
+  },
+  {
+    "food_id": "chia_seeds",
+    "goal": "weight_loss",
+    "score": 12,
+    "quantity": "1-2 tbsp (soaked)",
+    "reasons": [
+      "High soluble/insoluble fiber enhances gut satiety.",
+      "Soluble fiber expands in water, prolonging fullness."
+    ]
+  },
+  {
+    "food_id": "chia_seeds",
+    "goal": "muscle_gain",
+    "score": 9,
+    "quantity": "30g (handful)",
+    "reasons": [
+      "Provides 16.5g of plant protein per 100g.",
+      "Rich in healthy fats and dense amino acids supporting tissue recovery."
+    ]
+  },
+  {
+    "food_id": "chia_seeds",
+    "goal": "heart_health",
+    "score": 5,
+    "quantity": "30g",
+    "reasons": [
+      "Monounsaturated and polyunsaturated fats help reduce LDL cholesterol."
+    ]
+  },
+  {
+    "food_id": "chia_seeds",
+    "goal": "digestion",
+    "score": 7,
+    "quantity": "100g",
+    "reasons": [
+      "High dietary fiber (34.4g) feeds healthy gut microflora."
+    ]
+  }
+]

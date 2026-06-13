@@ -1,0 +1,352 @@
+[
+  {
+    "food_id": "banana",
+    "name": "Vitamin C",
+    "amount": "8.7 mg"
+  },
+  {
+    "food_id": "banana",
+    "name": "Vitamin B6",
+    "amount": "0.4 mg"
+  },
+  {
+    "food_id": "banana",
+    "name": "Vitamin A",
+    "amount": "64 IU"
+  },
+  {
+    "food_id": "apple",
+    "name": "Vitamin C",
+    "amount": "4.6 mg"
+  },
+  {
+    "food_id": "apple",
+    "name": "Vitamin K",
+    "amount": "2.2 mcg"
+  },
+  {
+    "food_id": "apple",
+    "name": "Vitamin B6",
+    "amount": "0.04 mg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Vitamin C",
+    "amount": "53.2 mg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Folate (B9)",
+    "amount": "30 mcg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Vitamin A",
+    "amount": "225 IU"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Vitamin C",
+    "amount": "92.7 mg"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Vitamin K",
+    "amount": "40.3 mcg"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Vitamin E",
+    "amount": "1.5 mg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Vitamin C",
+    "amount": "9.7 mg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Vitamin K",
+    "amount": "19.3 mcg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Vitamin B6",
+    "amount": "0.05 mg"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Vitamin C",
+    "amount": "8.1 mg"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Vitamin A",
+    "amount": "569 IU"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Vitamin B1",
+    "amount": "0.03 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Vitamin B6",
+    "amount": "0.2 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Folate (B9)",
+    "amount": "15 mcg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Vitamin K",
+    "amount": "2.7 mcg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Vitamin C",
+    "amount": "10.2 mg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Vitamin K",
+    "amount": "16.4 mcg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Folate (B9)",
+    "amount": "38 mcg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Vitamin A",
+    "amount": "9377 IU"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Vitamin C",
+    "amount": "28.1 mg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Vitamin K",
+    "amount": "482.9 mcg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Folate (B9)",
+    "amount": "194 mcg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Vitamin C",
+    "amount": "89.2 mg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Vitamin K",
+    "amount": "101.6 mcg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Vitamin A",
+    "amount": "623 IU"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Vitamin A",
+    "amount": "16706 IU"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Vitamin C",
+    "amount": "5.9 mg"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Vitamin K",
+    "amount": "13.2 mcg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Folate (B9)",
+    "amount": "109 mcg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Vitamin C",
+    "amount": "4.9 mg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Vitamin B6",
+    "amount": "0.06 mg"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Vitamin A",
+    "amount": "14187 IU"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Vitamin C",
+    "amount": "2.4 mg"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Vitamin B6",
+    "amount": "0.2 mg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Vitamin K",
+    "amount": "16.4 mcg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Vitamin C",
+    "amount": "2.8 mg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Vitamin A",
+    "amount": "105 IU"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Vitamin C",
+    "amount": "25.9 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Vitamin B6",
+    "amount": "1.8 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Vitamin E",
+    "amount": "3.1 mg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Vitamin C",
+    "amount": "5.0 mg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Folate (B9)",
+    "amount": "11 mcg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Vitamin B6",
+    "amount": "0.16 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Vitamin C",
+    "amount": "31.2 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Vitamin B6",
+    "amount": "1.2 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Folate (B9)",
+    "amount": "3 mcg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Vitamin K",
+    "amount": "31.2 mcg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Vitamin C",
+    "amount": "3.8 mg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Vitamin A",
+    "amount": "295 IU"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Vitamin K",
+    "amount": "163.7 mcg"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Vitamin A",
+    "amount": "547 IU"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Vitamin E",
+    "amount": "1.0 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Vitamin E",
+    "amount": "25.6 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Riboflavin (B2)",
+    "amount": "1.1 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Niacin (B3)",
+    "amount": "3.6 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Vitamin B6",
+    "amount": "0.5 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Folate (B9)",
+    "amount": "98 mcg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Vitamin E",
+    "amount": "0.7 mg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Vitamin K",
+    "amount": "51.4 mcg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Folate (B9)",
+    "amount": "58 mcg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Vitamin B6",
+    "amount": "0.1 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Vitamin A",
+    "amount": "54 IU"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Vitamin C",
+    "amount": "1.6 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Niacin (B3)",
+    "amount": "8.8 mg"
+  }
+]

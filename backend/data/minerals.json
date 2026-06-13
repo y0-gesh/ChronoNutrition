@@ -1,0 +1,407 @@
+[
+  {
+    "food_id": "banana",
+    "name": "Potassium",
+    "amount": "358 mg"
+  },
+  {
+    "food_id": "banana",
+    "name": "Magnesium",
+    "amount": "27 mg"
+  },
+  {
+    "food_id": "banana",
+    "name": "Manganese",
+    "amount": "0.3 mg"
+  },
+  {
+    "food_id": "apple",
+    "name": "Potassium",
+    "amount": "107 mg"
+  },
+  {
+    "food_id": "apple",
+    "name": "Calcium",
+    "amount": "6 mg"
+  },
+  {
+    "food_id": "apple",
+    "name": "Magnesium",
+    "amount": "5 mg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Calcium",
+    "amount": "40 mg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Potassium",
+    "amount": "181 mg"
+  },
+  {
+    "food_id": "orange",
+    "name": "Magnesium",
+    "amount": "10 mg"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Potassium",
+    "amount": "312 mg"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Copper",
+    "amount": "0.1 mg"
+  },
+  {
+    "food_id": "kiwi",
+    "name": "Magnesium",
+    "amount": "17 mg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Manganese",
+    "amount": "0.3 mg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Iron",
+    "amount": "0.3 mg"
+  },
+  {
+    "food_id": "blueberries",
+    "name": "Potassium",
+    "amount": "77 mg"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Potassium",
+    "amount": "112 mg"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Magnesium",
+    "amount": "10 mg"
+  },
+  {
+    "food_id": "watermelon",
+    "name": "Iron",
+    "amount": "0.2 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Potassium",
+    "amount": "696 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Magnesium",
+    "amount": "54 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Iron",
+    "amount": "0.9 mg"
+  },
+  {
+    "food_id": "dates",
+    "name": "Copper",
+    "amount": "0.4 mg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Potassium",
+    "amount": "236 mg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Copper",
+    "amount": "0.2 mg"
+  },
+  {
+    "food_id": "pomegranate",
+    "name": "Phosphorus",
+    "amount": "36 mg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Iron",
+    "amount": "2.7 mg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Calcium",
+    "amount": "99 mg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Magnesium",
+    "amount": "79 mg"
+  },
+  {
+    "food_id": "spinach",
+    "name": "Potassium",
+    "amount": "558 mg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Calcium",
+    "amount": "47 mg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Iron",
+    "amount": "0.7 mg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Potassium",
+    "amount": "316 mg"
+  },
+  {
+    "food_id": "broccoli",
+    "name": "Magnesium",
+    "amount": "21 mg"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Potassium",
+    "amount": "320 mg"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Calcium",
+    "amount": "33 mg"
+  },
+  {
+    "food_id": "carrot",
+    "name": "Magnesium",
+    "amount": "12 mg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Iron",
+    "amount": "0.8 mg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Potassium",
+    "amount": "325 mg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Manganese",
+    "amount": "0.3 mg"
+  },
+  {
+    "food_id": "beetroot",
+    "name": "Magnesium",
+    "amount": "23 mg"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Potassium",
+    "amount": "337 mg"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Manganese",
+    "amount": "0.3 mg"
+  },
+  {
+    "food_id": "sweet_potato",
+    "name": "Magnesium",
+    "amount": "25 mg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Potassium",
+    "amount": "147 mg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Magnesium",
+    "amount": "13 mg"
+  },
+  {
+    "food_id": "cucumber",
+    "name": "Manganese",
+    "amount": "0.1 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Iron",
+    "amount": "55.0 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Magnesium",
+    "amount": "208 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Potassium",
+    "amount": "2080 mg"
+  },
+  {
+    "food_id": "turmeric",
+    "name": "Zinc",
+    "amount": "4.5 mg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Potassium",
+    "amount": "415 mg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Magnesium",
+    "amount": "43 mg"
+  },
+  {
+    "food_id": "ginger",
+    "name": "Iron",
+    "amount": "0.6 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Selenium",
+    "amount": "14.2 mcg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Manganese",
+    "amount": "1.7 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Calcium",
+    "amount": "181 mg"
+  },
+  {
+    "food_id": "garlic",
+    "name": "Zinc",
+    "amount": "1.2 mg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Calcium",
+    "amount": "1002 mg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Iron",
+    "amount": "8.3 mg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Magnesium",
+    "amount": "60 mg"
+  },
+  {
+    "food_id": "cinnamon",
+    "name": "Manganese",
+    "amount": "17.5 mg"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Iron",
+    "amount": "9.7 mg"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Calcium",
+    "amount": "443 mg"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Magnesium",
+    "amount": "171 mg"
+  },
+  {
+    "food_id": "black_pepper",
+    "name": "Manganese",
+    "amount": "12.8 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Magnesium",
+    "amount": "270 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Manganese",
+    "amount": "2.3 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Calcium",
+    "amount": "269 mg"
+  },
+  {
+    "food_id": "almonds",
+    "name": "Iron",
+    "amount": "3.7 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Copper",
+    "amount": "1.6 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Manganese",
+    "amount": "3.4 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Magnesium",
+    "amount": "158 mg"
+  },
+  {
+    "food_id": "walnuts",
+    "name": "Zinc",
+    "amount": "3.1 mg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Magnesium",
+    "amount": "592 mg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Zinc",
+    "amount": "7.8 mg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Iron",
+    "amount": "8.8 mg"
+  },
+  {
+    "food_id": "pumpkin_seeds",
+    "name": "Potassium",
+    "amount": "809 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Calcium",
+    "amount": "631 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Iron",
+    "amount": "7.7 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Magnesium",
+    "amount": "335 mg"
+  },
+  {
+    "food_id": "chia_seeds",
+    "name": "Phosphorus",
+    "amount": "860 mg"
+  }
+]
