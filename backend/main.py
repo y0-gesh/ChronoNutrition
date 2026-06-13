@@ -11,6 +11,7 @@ from datetime import datetime
 
 from database import engine, get_db, SessionLocal
 import models
+from skills import run_chat_skill
 
 # Load environment variables
 load_dotenv()
@@ -489,102 +490,17 @@ def get_planner(
 def run_chat(request: ChatRequest, db: Session = Depends(get_db)):
     msg = request.message
     
-    # 1. Try Gemini AI integration
+    # 1. Try Gemini AI integration using modular chat skill
     all_foods = db.query(models.Food).all()
     foods_info = []
     for f in all_foods:
         foods_info.append({
             "id": f.id,
             "name": f.name,
-            "category": f.category,
-            "description": f.description,
-            "best_time_to_eat": f.best_time_to_eat,
-            "avoid_time": f.avoid_time
+            "category": f.category
         })
-
-    import urllib.request
-    import urllib.error
     
-    api_key = os.getenv("GEMINI_API_KEY")
-    ai_response = None
-    
-    if api_key:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
-        
-        prompt = (
-            "You are a ChronoNutrition AI Assistant. Analyze the user's question and recommend relevant foods from our database.\n\n"
-            "Here are the available foods in our database:\n"
-        )
-        for f in foods_info:
-            prompt += f"- ID: {f['id']}, Name: {f['name']}, Category: {f['category']}, Description: {f['description']}, Best Time: {f['best_time_to_eat']}, Avoid Time: {f['avoid_time']}\n"
-        
-        prompt += (
-            f"\nUser Query: \"{msg}\"\n\n"
-            "Respond with a JSON object matching this schema:\n"
-            "{\n"
-            "  \"reply\": \"detailed markdown response explaining circadian timing and recommendations\",\n"
-            "  \"recommended_foods\": [\"list\", \"of\", \"food\", \"ids\", \"matching\", \"available\", \"food\", \"ids\"]\n"
-            "}\n"
-            "IMPORTANT:\n"
-            "1. Only recommend food IDs that are in the available list above.\n"
-            "2. Return at most 5 food IDs.\n"
-            "3. Explain clearly why these foods are recommended and when is the best time to eat them based on their circadian rhythms."
-        )
-        
-        body = {
-            "contents": [
-                {
-                    "parts": [
-                        {
-                            "text": prompt
-                        }
-                    ]
-                }
-            ],
-            "generationConfig": {
-                "responseMimeType": "application/json",
-                "responseSchema": {
-                    "type": "OBJECT",
-                    "properties": {
-                        "reply": {
-                            "type": "STRING"
-                        },
-                        "recommended_foods": {
-                            "type": "ARRAY",
-                            "items": {
-                                "type": "STRING"
-                            }
-                        }
-                    },
-                    "required": ["reply", "recommended_foods"]
-                }
-            }
-        }
-        
-        try:
-            req = urllib.request.Request(
-                url,
-                data=json.dumps(body).encode("utf-8"),
-                headers={"Content-Type": "application/json"},
-                method="POST"
-            )
-            with urllib.request.urlopen(req, timeout=12) as response:
-                res_data = json.loads(response.read().decode("utf-8"))
-                candidate = res_data.get("candidates", [{}])[0]
-                text = candidate.get("content", {}).get("parts", [{}])[0].get("text", "")
-                
-                text_str = text.strip()
-                if text_str.startswith("```json"):
-                    text_str = text_str[7:]
-                if text_str.endswith("```"):
-                    text_str = text_str[:-3]
-                text_str = text_str.strip()
-                
-                parsed = json.loads(text_str)
-                if "reply" in parsed and "recommended_foods" in parsed:
-                    ai_response = parsed
-        except Exception as e:
-            print(f"Error calling Gemini API: {e}")
+    ai_response = run_chat_skill(msg, foods_info)
 
     # 2. Process results
     if ai_response:
