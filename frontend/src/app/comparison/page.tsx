@@ -11,8 +11,31 @@ function ComparisonContent() {
 
   const [allFoods, setAllFoods] = useState<Food[]>([]);
   const [comparedFoods, setComparedFoods] = useState<FoodDetail[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // Load from session storage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = sessionStorage.getItem("comparedFoods");
+      if (stored) {
+        try {
+          setComparedFoods(JSON.parse(stored));
+        } catch (e) {
+          console.error("Failed to parse compared foods from session storage", e);
+        }
+      }
+      setIsLoaded(true);
+    }
+  }, []);
+
+  // Save to session storage when comparedFoods changes
+  useEffect(() => {
+    if (isLoaded && typeof window !== "undefined") {
+      sessionStorage.setItem("comparedFoods", JSON.stringify(comparedFoods));
+    }
+  }, [comparedFoods, isLoaded]);
 
   // Load basic foods list
   useEffect(() => {
@@ -32,10 +55,24 @@ function ComparisonContent() {
   // Parse "?add=..." from URL search params
   useEffect(() => {
     const addId = searchParams.get("add");
-    if (!addId || allFoods.length === 0) return;
+    if (!addId || allFoods.length === 0 || !isLoaded) return;
 
     // Check if already compared
-    if (comparedFoods.some((f) => f.id === addId)) return;
+    if (comparedFoods.some((f) => f.id === addId)) {
+      // Clear param to prevent repeated check
+      const params = new URLSearchParams(searchParams);
+      params.delete("add");
+      router.replace(`/comparison?${params.toString()}`);
+      return;
+    }
+
+    if (comparedFoods.length >= 4) {
+      alert("You can compare up to 4 foods at once.");
+      const params = new URLSearchParams(searchParams);
+      params.delete("add");
+      router.replace(`/comparison?${params.toString()}`);
+      return;
+    }
 
     // Load full details and add to board
     async function loadAndAdd() {
@@ -51,7 +88,7 @@ function ComparisonContent() {
       }
     }
     loadAndAdd();
-  }, [searchParams, allFoods]);
+  }, [searchParams, allFoods, isLoaded, comparedFoods]);
 
   const addFoodToCompare = async (id: string) => {
     if (comparedFoods.some((f) => f.id === id)) {

@@ -4,7 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, Target, Heart, Award, ArrowRight, ShieldAlert } from "lucide-react";
-import { getRecommendations, Recommendation } from "@/lib/api";
+import { getRecommendations, getFoodDetail, Recommendation } from "@/lib/api";
 
 const GOALS = [
   { category: "Fitness", items: ["Weight Loss", "Muscle Gain"] },
@@ -19,8 +19,50 @@ function RecommendationsContent() {
 
   const [activeGoal, setActiveGoal] = useState(initialGoal);
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
+  const [comparedFoodIds, setComparedFoodIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = sessionStorage.getItem("comparedFoods");
+      if (stored) {
+        try {
+          const foods = JSON.parse(stored) as { id: string }[];
+          setComparedFoodIds(foods.map((f) => f.id));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+  }, []);
+
+  const handleAddToBoard = async (foodId: string) => {
+    if (comparedFoodIds.includes(foodId)) return;
+    if (comparedFoodIds.length >= 4) {
+      alert("You can compare up to 4 foods at once.");
+      return;
+    }
+    try {
+      const detail = await getFoodDetail(foodId);
+      const stored = sessionStorage.getItem("comparedFoods");
+      let currentCompared: any[] = [];
+      if (stored) {
+        try {
+          currentCompared = JSON.parse(stored);
+        } catch (e) {}
+      }
+      
+      if (!currentCompared.some((f) => f.id === foodId)) {
+        currentCompared.push(detail);
+        sessionStorage.setItem("comparedFoods", JSON.stringify(currentCompared));
+        setComparedFoodIds(currentCompared.map((f) => f.id));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to add food to comparison board.");
+    }
+  };
 
   // Sync state if query param changes
   useEffect(() => {
@@ -186,12 +228,21 @@ function RecommendationsContent() {
 
                   <div className="mt-6 border-t border-zinc-200/50 dark:border-zinc-800 pt-3 flex items-center justify-between">
                     <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Compare Facts</span>
-                    <Link
-                      href={`/comparison?add=${rec.food.id}`}
-                      className="text-xs font-bold text-emerald-500 flex items-center gap-1 hover:underline"
-                    >
-                      Add to Board <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                    {comparedFoodIds.includes(rec.food.id) ? (
+                      <Link
+                        href="/comparison"
+                        className="text-xs font-bold text-indigo-500 flex items-center gap-1 hover:underline"
+                      >
+                        Show Comparison <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => handleAddToBoard(rec.food.id)}
+                        className="text-xs font-bold text-emerald-500 flex items-center gap-1 hover:underline cursor-pointer bg-transparent border-none p-0 outline-none"
+                      >
+                        Add to Board <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

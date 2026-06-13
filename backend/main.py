@@ -487,51 +487,154 @@ def get_planner(
 
 @app.post("/api/chat", response_model=ChatResponse)
 def run_chat(request: ChatRequest, db: Session = Depends(get_db)):
-    msg = request.message.lower()
+    msg = request.message
     
-    # Rule/Keyword matcher to fetch foods
-    matched_ids = []
-    reply = ""
+    # 1. Try Gemini AI integration
+    all_foods = db.query(models.Food).all()
+    foods_info = []
+    for f in all_foods:
+        foods_info.append({
+            "id": f.id,
+            "name": f.name,
+            "category": f.category,
+            "description": f.description,
+            "best_time_to_eat": f.best_time_to_eat,
+            "avoid_time": f.avoid_time
+        })
 
-    # Exercise keywords
-    if "gym" in msg or "workout" in msg or "exercise" in msg or "pre-workout" in msg or "post-workout" in msg:
-        matched_ids = ["banana", "dates", "sweet_potato", "beetroot"]
-        reply = "For exercises and athletic workouts, timing is critical. Before a workout (30-60 minutes), focus on fast-digesting carbohydrates like **Bananas** and **Dates** to rapidly top up glycogen levels. For long-term vascular dilation, drinking/eating **Beetroot** 2 hours prior improves nitric oxide flow. Post-workout, consume **Sweet Potatoes** alongside high plant-proteins to recover tissues."
+    import urllib.request
+    import urllib.error
     
-    # Sleep keywords
-    elif "sleep" in msg or "insomnia" in msg or "night" in msg or "bedtime" in msg or "bed" in msg:
-        matched_ids = ["kiwi", "pumpkin_seeds", "walnuts", "banana"]
-        reply = "To support deep, restful sleep naturally, look for foods rich in serotonin, tryptophan, or muscle-relaxing minerals. **Kiwis** eaten 1-2 hours before bed significantly enhance sleep quality due to their serotonin concentration. **Pumpkin Seeds** supply magnesium and tryptophan, which convert to sleep-inducing melatonin. **Walnuts** provide direct plant-based melatonin, and **Bananas** contain potassium/magnesium to ease muscular tension."
+    api_key = os.getenv("GEMINI_API_KEY")
+    ai_response = None
+    
+    if api_key:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+        
+        prompt = (
+            "You are a ChronoNutrition AI Assistant. Analyze the user's question and recommend relevant foods from our database.\n\n"
+            "Here are the available foods in our database:\n"
+        )
+        for f in foods_info:
+            prompt += f"- ID: {f['id']}, Name: {f['name']}, Category: {f['category']}, Description: {f['description']}, Best Time: {f['best_time_to_eat']}, Avoid Time: {f['avoid_time']}\n"
+        
+        prompt += (
+            f"\nUser Query: \"{msg}\"\n\n"
+            "Respond with a JSON object matching this schema:\n"
+            "{\n"
+            "  \"reply\": \"detailed markdown response explaining circadian timing and recommendations\",\n"
+            "  \"recommended_foods\": [\"list\", \"of\", \"food\", \"ids\", \"matching\", \"available\", \"food\", \"ids\"]\n"
+            "}\n"
+            "IMPORTANT:\n"
+            "1. Only recommend food IDs that are in the available list above.\n"
+            "2. Return at most 5 food IDs.\n"
+            "3. Explain clearly why these foods are recommended and when is the best time to eat them based on their circadian rhythms."
+        )
+        
+        body = {
+            "contents": [
+                {
+                    "parts": [
+                        {
+                            "text": prompt
+                        }
+                    ]
+                }
+            ],
+            "generationConfig": {
+                "responseMimeType": "application/json",
+                "responseSchema": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "reply": {
+                            "type": "STRING"
+                        },
+                        "recommended_foods": {
+                            "type": "ARRAY",
+                            "items": {
+                                "type": "STRING"
+                            }
+                        }
+                    },
+                    "required": ["reply", "recommended_foods"]
+                }
+            }
+        }
+        
+        try:
+            req = urllib.request.Request(
+                url,
+                data=json.dumps(body).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST"
+            )
+            with urllib.request.urlopen(req, timeout=12) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                candidate = res_data.get("candidates", [{}])[0]
+                text = candidate.get("content", {}).get("parts", [{}])[0].get("text", "")
+                
+                text_str = text.strip()
+                if text_str.startswith("```json"):
+                    text_str = text_str[7:]
+                if text_str.endswith("```"):
+                    text_str = text_str[:-3]
+                text_str = text_str.strip()
+                
+                parsed = json.loads(text_str)
+                if "reply" in parsed and "recommended_foods" in parsed:
+                    ai_response = parsed
+        except Exception as e:
+            print(f"Error calling Gemini API: {e}")
 
-    # Study/Focus keywords
-    elif "concentration" in msg or "study" in msg or "focus" in msg or "brain" in msg or "memory" in msg or "productivity" in msg:
-        matched_ids = ["blueberries", "walnuts", "almonds", "pumpkin_seeds"]
-        reply = "Optimal brain health and focus require essential omega-3 fatty acids, protective antioxidants, and vital minerals. **Blueberries** are the premier choice, containing anthocyanins that pass the blood-brain barrier to sharpen neural communication. **Walnuts** deliver critical plant omega-3s (ALA) to enhance cognitive agility. **Almonds** and **Pumpkin Seeds** supply Vitamin E and Zinc to combat brain tissue oxidation."
-
-    # Cold/Immunity keywords
-    elif "cold" in msg or "flu" in msg or "sick" in msg or "illness" in msg or "immunity" in msg or "immune" in msg:
-        matched_ids = ["orange", "kiwi", "garlic", "ginger", "turmeric"]
-        reply = "To bolster your immune response and recover faster, target high-strength Vitamin C and natural antiviral herbs. **Oranges** and **Kiwis** provide exceptional Vitamin C density. **Garlic** contains active allicin, a heavy organosulfur antimicrobial that suppresses cold viruses. **Ginger** reduces throat inflammation and nausea, while **Turmeric** controls systemic inflammation."
-
-    # Digestion keywords
-    elif "digestion" in msg or "bloating" in msg or "gut" in msg or "stomach" in msg or "indigestion" in msg:
-        matched_ids = ["ginger", "kiwi", "apple", "chia_seeds"]
-        reply = "For digestive comfort, we focus on gas relief, active enzymes, and healthy fibers. **Ginger** speeds gastric emptying, stopping fermentation. **Kiwis** contain actinidin, a proteolytic enzyme that breaks down heavy proteins. **Apples** (pectin) and **Chia Seeds** are exceptional prebiotics, feeding healthy gut bacteria and promoting bowel regularity."
-
-    # Fatigue / tiredness
-    elif "fatigue" in msg or "tired" in msg or "energy" in msg or "weakness" in msg:
-        matched_ids = ["spinach", "beetroot", "dates", "banana"]
-        reply = "Fatigue can indicate a lack of oxygen carrier density (iron) or metabolic conversion fuel. **Spinach** is packed with non-heme iron and magnesium. **Beetroot** expands blood vessels to improve oxygen delivery. **Dates** and **Bananas** offer immediate carbohydrate fuel to counter mid-day fatigue drops."
-
-    # Skin health
-    elif "skin" in msg or "acne" in msg or "wrinkles" in msg or "aging" in msg or "hair" in msg:
-        matched_ids = ["almonds", "carrot", "pomegranate", "orange"]
-        reply = "Radiant skin and hair depend on cellular antioxidant protection and strong collagen support. **Almonds** provide skin-shielding Vitamin E. **Carrots** supply beta-carotene which helps generate and repair skin tissues. **Oranges** and **Pomegranates** provide high Vitamin C to boost collagen building and prevent cellular signs of aging."
-
-    # General catch-all
+    # 2. Process results
+    if ai_response:
+        reply = ai_response["reply"]
+        matched_ids = ai_response["recommended_foods"]
     else:
-        matched_ids = ["banana", "blueberries", "spinach", "turmeric", "almonds"]
-        reply = "Hello! I am your ChronoNutrition Assistant. You can ask me questions like:\n- *'What foods improve my sleep?'*\n- *'What should I eat before going to the gym?'*\n- *'Which foods help with brain focus while studying?'*\n- *'I feel fatigued, what should I eat?'*\n\nBased on general health, some of our premier timing-aware superfoods are **Bananas** (pre-workout energy), **Blueberries** (morning focus), **Spinach** (nitrate stamina at lunch), **Turmeric** (anti-inflammatory), and **Almonds** (brain/skin health)."
+        # Fallback to rule/keyword matcher
+        msg_lower = msg.lower()
+        matched_ids = []
+        reply = ""
+
+        # Exercise keywords
+        if "gym" in msg_lower or "workout" in msg_lower or "exercise" in msg_lower or "pre-workout" in msg_lower or "post-workout" in msg_lower:
+            matched_ids = ["banana", "dates", "sweet_potato", "beetroot"]
+            reply = "For exercises and athletic workouts, timing is critical. Before a workout (30-60 minutes), focus on fast-digesting carbohydrates like **Bananas** and **Dates** to rapidly top up glycogen levels. For long-term vascular dilation, drinking/eating **Beetroot** 2 hours prior improves nitric oxide flow. Post-workout, consume **Sweet Potatoes** alongside high plant-proteins to recover tissues."
+        
+        # Sleep keywords
+        elif "sleep" in msg_lower or "insomnia" in msg_lower or "night" in msg_lower or "bedtime" in msg_lower or "bed" in msg_lower:
+            matched_ids = ["kiwi", "pumpkin_seeds", "walnuts", "banana"]
+            reply = "To support deep, restful sleep naturally, look for foods rich in serotonin, tryptophan, or muscle-relaxing minerals. **Kiwis** eaten 1-2 hours before bed significantly enhance sleep quality due to their serotonin concentration. **Pumpkin Seeds** supply magnesium and tryptophan, which convert to sleep-inducing melatonin. **Walnuts** provide direct plant-based melatonin, and **Bananas** contain potassium/magnesium to ease muscular tension."
+
+        # Study/Focus keywords
+        elif "concentration" in msg_lower or "study" in msg_lower or "focus" in msg_lower or "brain" in msg_lower or "memory" in msg_lower or "productivity" in msg_lower:
+            matched_ids = ["blueberries", "walnuts", "almonds", "pumpkin_seeds"]
+            reply = "Optimal brain health and focus require essential omega-3 fatty acids, protective antioxidants, and vital minerals. **Blueberries** are the premier choice, containing anthocyanins that pass the blood-brain barrier to sharpen neural communication. **Walnuts** deliver critical plant omega-3s (ALA) to enhance cognitive agility. **Almonds** and **Pumpkin Seeds** supply Vitamin E and Zinc to combat brain tissue oxidation."
+
+        # Cold/Immunity keywords
+        elif "cold" in msg_lower or "flu" in msg_lower or "sick" in msg_lower or "illness" in msg_lower or "immunity" in msg_lower or "immune" in msg_lower:
+            matched_ids = ["orange", "kiwi", "garlic", "ginger", "turmeric"]
+            reply = "To bolster your immune response and recover faster, target high-strength Vitamin C and natural antiviral herbs. **Oranges** and **Kiwis** provide exceptional Vitamin C density. **Garlic** contains active allicin, a heavy organosulfur antimicrobial that suppresses cold viruses. **Ginger** reduces throat inflammation and nausea, while **Turmeric** controls systemic inflammation."
+
+        # Digestion keywords
+        elif "digestion" in msg_lower or "bloating" in msg_lower or "gut" in msg_lower or "stomach" in msg_lower or "indigestion" in msg_lower:
+            matched_ids = ["ginger", "kiwi", "apple", "chia_seeds"]
+            reply = "For digestive comfort, we focus on gas relief, active enzymes, and healthy fibers. **Ginger** speeds gastric emptying, stopping fermentation. **Kiwis** contain actinidin, a proteolytic enzyme that breaks down heavy proteins. **Apples** (pectin) and **Chia Seeds** are exceptional prebiotics, feeding healthy gut bacteria and promoting bowel regularity."
+
+        # Fatigue / tiredness
+        elif "fatigue" in msg_lower or "tired" in msg_lower or "energy" in msg_lower or "weakness" in msg_lower:
+            matched_ids = ["spinach", "beetroot", "dates", "banana"]
+            reply = "Fatigue can indicate a lack of oxygen carrier density (iron) or metabolic conversion fuel. **Spinach** is packed with non-heme iron and magnesium. **Beetroot** expands blood vessels to improve oxygen delivery. **Dates** and **Bananas** offer immediate carbohydrate fuel to counter mid-day fatigue drops."
+
+        # Skin health
+        elif "skin" in msg_lower or "acne" in msg_lower or "wrinkles" in msg_lower or "aging" in msg_lower or "hair" in msg_lower:
+            matched_ids = ["almonds", "carrot", "pomegranate", "orange"]
+            reply = "Radiant skin and hair depend on cellular antioxidant protection and strong collagen support. **Almonds** provide skin-shielding Vitamin E. **Carrots** supply beta-carotene which helps generate and repair skin tissues. **Oranges** and **Pomegranates** provide high Vitamin C to boost collagen building and prevent cellular signs of aging."
+
+        # General catch-all
+        else:
+            matched_ids = ["banana", "blueberries", "spinach", "turmeric", "almonds"]
+            reply = "Hello! I am your ChronoNutrition Assistant. You can ask me questions like:\n- *'What foods improve my sleep?'*\n- *'What should I eat before going to the gym?'*\n- *'Which foods help with brain focus while studying?'*\n- *'I feel fatigued, what should I eat?'*\n\nBased on general health, some of our premier timing-aware superfoods are **Bananas** (pre-workout energy), **Blueberries** (morning focus), **Spinach** (nitrate stamina at lunch), **Turmeric** (anti-inflammatory), and **Almonds** (brain/skin health)."
 
     # Fetch hydrated foods from DB
     foods = db.query(models.Food).filter(models.Food.id.in_(matched_ids)).all()
