@@ -295,48 +295,53 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
 
-        {/* Sticky Bottombar for Water Reminder */}
-        <div className="fixed bottom-0 left-0 md:left-64 right-0 h-14 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-t border-zinc-200 dark:border-zinc-800/80 px-6 flex items-center justify-between z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-          <div className="flex items-center gap-3">
-            <span className="text-xl select-none">💧</span>
-            <div className="text-xs">
-              <span className="font-bold text-zinc-900 dark:text-zinc-100">Water Intake Tracker</span>
-              <span className="hidden sm:inline mx-2 text-zinc-300 dark:text-zinc-700">|</span>
-              <span className="hidden sm:inline text-zinc-500 dark:text-zinc-400">Target: 8 Glasses</span>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            {/* Progress Indicators */}
-            <div className="hidden sm:flex gap-1">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-3 h-3 rounded-full border border-blue-300 dark:border-blue-800/80 transition-colors ${
-                    i < waterCount ? "bg-blue-500" : "bg-zinc-100 dark:bg-zinc-950"
-                  }`}
-                />
-              ))}
+        {/* Sticky Bottombar for Water Reminder (Mac-dock hover style) */}
+        <div className="fixed bottom-0 left-0 md:left-64 right-0 h-14 bg-transparent group z-30 pointer-events-none">
+          <div className="pointer-events-auto relative h-14 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-t border-zinc-200 dark:border-zinc-800/80 px-6 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] transform translate-y-[calc(100%-8px)] group-hover:translate-y-0">
+            {/* Dock-style handle indicator */}
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-12 h-1 bg-blue-500/40 dark:bg-blue-500/20 rounded-full group-hover:opacity-0 transition-opacity duration-200" />
+            
+            <div className="flex items-center gap-3">
+              <span className="text-xl select-none animate-bounce">💧</span>
+              <div className="text-xs">
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">Water Intake Tracker</span>
+                <span className="hidden sm:inline mx-2 text-zinc-300 dark:text-zinc-700">|</span>
+                <span className="hidden sm:inline text-zinc-500 dark:text-zinc-400">Target: 8 Glasses</span>
+              </div>
             </div>
             
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 px-2.5 py-1 rounded-full border border-blue-500/10">
-                {waterCount} / 8 Glasses
-              </span>
-              <button
-                onClick={addWater}
-                className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[10px] font-bold tracking-wide uppercase shadow-sm transition-colors cursor-pointer"
-              >
-                + Log Glass
-              </button>
-              {waterCount > 0 && (
+            <div className="flex items-center gap-4">
+              {/* Progress Indicators */}
+              <div className="hidden sm:flex gap-1">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-3 h-3 rounded-full border border-blue-300 dark:border-blue-800/80 transition-colors ${
+                      i < waterCount ? "bg-blue-500" : "bg-zinc-100 dark:bg-zinc-950"
+                    }`}
+                  />
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 px-2.5 py-1 rounded-full border border-blue-500/10">
+                  {waterCount} / 8 Glasses
+                </span>
                 <button
-                  onClick={resetWater}
-                  className="text-[10px] text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-200 ml-1 hover:underline cursor-pointer"
+                  onClick={addWater}
+                  className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[10px] font-bold tracking-wide uppercase shadow-sm transition-colors cursor-pointer"
                 >
-                  Reset
+                  + Log Glass
                 </button>
-              )}
+                {waterCount > 0 && (
+                  <button
+                    onClick={resetWater}
+                    className="text-[10px] text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-200 ml-1 hover:underline cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
