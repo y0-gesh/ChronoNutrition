@@ -15,7 +15,7 @@ import {
   Menu,
   X,
   Sun,
-  Moon
+  Moon,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -34,12 +34,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [waterCount, setWaterCount] = useState(0);
+  const [showWaterBar, setShowWaterBar] = useState(false);
+  const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
 
+  // Load water count
   useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("waterCount");
       const today = new Date().toDateString();
       const storedDate = localStorage.getItem("waterDate");
+
       if (storedDate === today && stored) {
         setWaterCount(parseInt(stored) || 0);
       } else {
@@ -58,6 +62,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const resetWater = () => {
     setWaterCount(0);
     localStorage.setItem("waterCount", "0");
+  };
+
+  const handleWaterBarEnter = () => {
+    if (hideTimeout) {
+      clearTimeout(hideTimeout);
+      setHideTimeout(null);
+    }
+    setShowWaterBar(true);
+  };
+
+  const handleWaterBarLeave = () => {
+    const timeout = setTimeout(() => {
+      setShowWaterBar(false);
+    }, 5000);
+    setHideTimeout(timeout);
   };
 
   useEffect(() => {
@@ -91,44 +110,49 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   };
 
   const getTimingSegment = (date: Date | null) => {
-    if (!date) return { name: "Loading...", color: "text-zinc-400", recommendation: "" };
+    if (!date)
+      return { name: "Loading...", color: "text-zinc-400", recommendation: "" };
     const hour = date.getHours();
 
     if (hour >= 6 && hour < 10) {
       return {
         name: "Morning",
         color: "text-amber-500 dark:text-amber-400",
-        recommendation: "Perfect time for Bananas, soaked Almonds, and Citrus fruits."
+        recommendation:
+          "Perfect time for Bananas, soaked Almonds, and Citrus fruits.",
       };
     } else if (hour >= 10 && hour < 12) {
       return {
         name: "Mid-Morning",
         color: "text-yellow-500",
-        recommendation: "Great time for an Apple or handful of Chia Seeds."
+        recommendation: "Great time for an Apple or handful of Chia Seeds.",
       };
     } else if (hour >= 12 && hour < 15) {
       return {
         name: "Afternoon / Lunch",
         color: "text-orange-500 dark:text-orange-400",
-        recommendation: "Load up on Spinach, Beetroot, and complex Sweet Potatoes."
+        recommendation:
+          "Load up on Spinach, Beetroot, and complex Sweet Potatoes.",
       };
     } else if (hour >= 15 && hour < 18) {
       return {
         name: "Evening",
         color: "text-teal-500 dark:text-teal-400",
-        recommendation: "Sip Green Tea and enjoy some Almonds or Walnuts."
+        recommendation: "Sip Green Tea and enjoy some Almonds or Walnuts.",
       };
     } else if (hour >= 18 && hour < 21) {
       return {
         name: "Dinner",
         color: "text-indigo-500 dark:text-indigo-400",
-        recommendation: "Choose light cooked veggies like steamed Broccoli and soup."
+        recommendation:
+          "Choose light cooked veggies like steamed Broccoli and soup.",
       };
     } else {
       return {
         name: "Late Night / Pre-Sleep",
         color: "text-violet-500 dark:text-violet-400",
-        recommendation: "Excellent window for Kiwis, Pumpkin Seeds, or Walnuts. Avoid heavy fruits/sugars!"
+        recommendation:
+          "Excellent window for Kiwis, Pumpkin Seeds, or Walnuts. Avoid heavy fruits/sugars!",
       };
     }
   };
@@ -141,7 +165,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <aside className="hidden md:flex md:w-64 flex-col fixed inset-y-0 left-0 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl border-r border-zinc-200 dark:border-zinc-800/80 z-20">
         <div className="h-16 flex items-center px-6 border-b border-zinc-200 dark:border-zinc-800/80">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold bg-gradient-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-linear-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent">
               ChronoNutrition
             </span>
           </Link>
@@ -162,7 +186,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               >
                 <Icon
                   className={`w-5 h-5 transition-transform duration-200 group-hover:scale-110 ${
-                    isActive ? "text-emerald-500" : "text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-600 dark:group-hover:text-zinc-300"
+                    isActive
+                      ? "text-emerald-500"
+                      : "text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-600 dark:group-hover:text-zinc-300"
                   }`}
                 />
                 {item.label}
@@ -202,7 +228,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             >
               <Menu className="w-6 h-6" />
             </button>
-            <span className="text-lg font-bold bg-gradient-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent md:hidden">
+            <span className="text-lg font-bold bg-linear-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent md:hidden">
               ChronoNutrition
             </span>
           </div>
@@ -213,12 +239,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Clock className="w-4 h-4 text-emerald-500 shrink-0" />
               <div className="truncate text-left">
                 <span className="font-semibold text-zinc-800 dark:text-zinc-200">
-                  {currentTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  {currentTime.toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </span>
                 <span className="mx-1.5 text-zinc-400">|</span>
-                <span className={`font-bold ${segment.color}`}>{segment.name}</span>
+                <span className={`font-bold ${segment.color}`}>
+                  {segment.name}
+                </span>
                 <span className="mx-1.5 text-zinc-400">|</span>
-                <span className="text-zinc-500 dark:text-zinc-400 italic font-medium">{segment.recommendation}</span>
+                <span className="text-zinc-500 dark:text-zinc-400 italic font-medium">
+                  {segment.recommendation}
+                </span>
               </div>
             </div>
           )}
@@ -228,7 +261,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               onClick={toggleTheme}
               className="sm:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
-              {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-indigo-500" />}
+              {darkMode ? (
+                <Sun className="w-5 h-5 text-amber-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-indigo-500" />
+              )}
             </button>
             <div className="flex items-center gap-2 bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold select-none border border-emerald-500/20">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -246,7 +283,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             />
             <aside className="relative flex w-full max-w-xs flex-col bg-white dark:bg-zinc-900 p-6 shadow-xl ring-1 ring-black/5">
               <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-4 mb-4">
-                <span className="text-xl font-bold bg-gradient-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent">
+                <span className="text-xl font-bold bg-linear-to-r from-emerald-500 via-amber-500 to-indigo-500 bg-clip-text text-transparent">
                   ChronoNutrition
                 </span>
                 <button
@@ -271,7 +308,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                           : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 hover:text-zinc-100"
                       }`}
                     >
-                      <Icon className={`w-5 h-5 ${isActive ? "text-emerald-500" : "text-zinc-400"}`} />
+                      <Icon
+                        className={`w-5 h-5 ${isActive ? "text-emerald-500" : "text-zinc-400"}`}
+                      />
                       {item.label}
                     </Link>
                   );
@@ -282,7 +321,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   onClick={toggleTheme}
                   className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 hover:text-zinc-100"
                 >
-                  {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-indigo-500" />}
+                  {darkMode ? (
+                    <Sun className="w-5 h-5 text-amber-400" />
+                  ) : (
+                    <Moon className="w-5 h-5 text-indigo-500" />
+                  )}
                   <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
                 </button>
               </div>
@@ -295,21 +338,35 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
 
-        {/* Sticky Bottombar for Water Reminder (Mac-dock hover style) */}
-        <div className="fixed bottom-0 left-0 md:left-64 right-0 h-14 bg-transparent group z-30 pointer-events-none">
-          <div className="pointer-events-auto relative h-14 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-t border-zinc-200 dark:border-zinc-800/80 px-6 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] transform translate-y-[calc(100%-8px)] group-hover:translate-y-0">
+        {/* Sticky Bottombar for Water Reminder */}
+        <div
+          className="fixed bottom-0 left-0 md:left-64 right-0 z-30"
+          onMouseEnter={handleWaterBarEnter}
+          onMouseLeave={handleWaterBarLeave}
+        >
+          <div
+            className={`relative h-14 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-t border-zinc-200 dark:border-zinc-800/80 px-6 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.08)] transition-all duration-300 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] ${
+              showWaterBar ? "translate-y-0" : "translate-y-[calc(100%-8px)]"
+            }`}
+          >
             {/* Dock-style handle indicator */}
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-12 h-1 bg-blue-500/40 dark:bg-blue-500/20 rounded-full group-hover:opacity-0 transition-opacity duration-200" />
-            
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-12 h-1 bg-blue-500/40 dark:bg-blue-500/20 rounded-full" />
+
             <div className="flex items-center gap-3">
               <span className="text-xl select-none animate-bounce">💧</span>
               <div className="text-xs">
-                <span className="font-bold text-zinc-900 dark:text-zinc-100">Water Intake Tracker</span>
-                <span className="hidden sm:inline mx-2 text-zinc-300 dark:text-zinc-700">|</span>
-                <span className="hidden sm:inline text-zinc-500 dark:text-zinc-400">Target: 8 Glasses</span>
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">
+                  Water Intake Tracker
+                </span>
+                <span className="hidden sm:inline mx-2 text-zinc-300 dark:text-zinc-700">
+                  |
+                </span>
+                <span className="hidden sm:inline text-zinc-500 dark:text-zinc-400">
+                  Target: 8 Glasses
+                </span>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-4">
               {/* Progress Indicators */}
               <div className="hidden sm:flex gap-1">
@@ -317,12 +374,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   <div
                     key={i}
                     className={`w-3 h-3 rounded-full border border-blue-300 dark:border-blue-800/80 transition-colors ${
-                      i < waterCount ? "bg-blue-500" : "bg-zinc-100 dark:bg-zinc-950"
+                      i < waterCount
+                        ? "bg-blue-500"
+                        : "bg-zinc-100 dark:bg-zinc-950"
                     }`}
                   />
                 ))}
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <span className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 px-2.5 py-1 rounded-full border border-blue-500/10">
                   {waterCount} / 8 Glasses
