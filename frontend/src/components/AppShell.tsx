@@ -33,6 +33,32 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [waterCount, setWaterCount] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("waterCount");
+      const today = new Date().toDateString();
+      const storedDate = localStorage.getItem("waterDate");
+      if (storedDate === today && stored) {
+        setWaterCount(parseInt(stored) || 0);
+      } else {
+        localStorage.setItem("waterDate", today);
+        localStorage.setItem("waterCount", "0");
+      }
+    }
+  }, []);
+
+  const addWater = () => {
+    const nextCount = Math.min(waterCount + 1, 12);
+    setWaterCount(nextCount);
+    localStorage.setItem("waterCount", nextCount.toString());
+  };
+
+  const resetWater = () => {
+    setWaterCount(0);
+    localStorage.setItem("waterCount", "0");
+  };
 
   useEffect(() => {
     setCurrentTime(new Date());
@@ -265,9 +291,55 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         )}
 
         {/* Content Children wrapper */}
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto bg-zinc-50/50 dark:bg-zinc-950/50">
+        <main className="flex-1 p-6 md:p-8 pb-20 overflow-y-auto bg-zinc-50/50 dark:bg-zinc-950/50">
           {children}
         </main>
+
+        {/* Sticky Bottombar for Water Reminder */}
+        <div className="fixed bottom-0 left-0 md:left-64 right-0 h-14 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-t border-zinc-200 dark:border-zinc-800/80 px-6 flex items-center justify-between z-30 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+          <div className="flex items-center gap-3">
+            <span className="text-xl select-none">💧</span>
+            <div className="text-xs">
+              <span className="font-bold text-zinc-900 dark:text-zinc-100">Water Intake Tracker</span>
+              <span className="hidden sm:inline mx-2 text-zinc-300 dark:text-zinc-700">|</span>
+              <span className="hidden sm:inline text-zinc-500 dark:text-zinc-400">Target: 8 Glasses</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            {/* Progress Indicators */}
+            <div className="hidden sm:flex gap-1">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-3 h-3 rounded-full border border-blue-300 dark:border-blue-800/80 transition-colors ${
+                    i < waterCount ? "bg-blue-500" : "bg-zinc-100 dark:bg-zinc-950"
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 px-2.5 py-1 rounded-full border border-blue-500/10">
+                {waterCount} / 8 Glasses
+              </span>
+              <button
+                onClick={addWater}
+                className="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-[10px] font-bold tracking-wide uppercase shadow-sm transition-colors cursor-pointer"
+              >
+                + Log Glass
+              </button>
+              {waterCount > 0 && (
+                <button
+                  onClick={resetWater}
+                  className="text-[10px] text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-200 ml-1 hover:underline cursor-pointer"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

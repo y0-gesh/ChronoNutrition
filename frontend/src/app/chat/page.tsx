@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Loader2, Send, Bot, User, Sparkles, ArrowRight } from "lucide-react";
+import { Loader2, Send, Bot, User, Sparkles, ArrowRight, Download, Clock } from "lucide-react";
 import { sendChatMessage, Food } from "@/lib/api";
 import Link from "next/link";
 
@@ -22,6 +22,115 @@ export default function Chat() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const TIME_ORDER = {
+    morning: 1,
+    mid: 2,
+    lunch: 3,
+    afternoon: 3,
+    evening: 4,
+    dinner: 5,
+    sleep: 6,
+    bed: 6,
+    anytime: 7
+  };
+
+  const getSortOrder = (bestTime: string) => {
+    const t = bestTime.toLowerCase();
+    for (const [key, val] of Object.entries(TIME_ORDER)) {
+      if (t.includes(key)) return val;
+    }
+    return 8;
+  };
+
+  const sortFoodsChronologically = (foodsList: Food[]) => {
+    return [...foodsList].sort((a, b) => getSortOrder(a.best_time_to_eat) - getSortOrder(b.best_time_to_eat));
+  };
+
+  const handleDownloadPDF = async (responseText: string, foods: Food[]) => {
+    try {
+      const { jsPDF } = await import("jspdf");
+      const doc = new jsPDF();
+
+      // Heading
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.setTextColor(16, 185, 129); // emerald-500
+      doc.text("ChronoNutrition AI Diet Plan", 20, 20);
+
+      // Subtitle
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.setTextColor(100, 116, 139); // slate-500
+      doc.text(`Generated on: ${new Date().toLocaleDateString()} at ${new Date().toLocaleTimeString()}`, 20, 28);
+      
+      // Response Summary text wrapped
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(11);
+      doc.setTextColor(51, 65, 85); // slate-700
+      const splitText = doc.splitTextToSize(responseText.replace(/\n/g, ' '), 170);
+      doc.text(splitText, 20, 40);
+
+      // Line separator
+      const startY = 40 + (splitText.length * 5) + 5;
+      doc.setDrawColor(226, 232, 240); // slate-200
+      doc.line(20, startY, 190, startY);
+
+      // Foods Timeline title
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(14);
+      doc.setTextColor(30, 41, 59); // slate-800
+      doc.text("Circadian Nutrition Timeline", 20, startY + 10);
+
+      // List foods sorted
+      const sortedFoods = sortFoodsChronologically(foods);
+      let currentY = startY + 20;
+
+      sortedFoods.forEach((food, index) => {
+        // Page break if too low
+        if (currentY > 260) {
+          doc.addPage();
+          currentY = 20;
+        }
+
+        // Draw bullet/dot representation
+        doc.setFillColor(16, 185, 129);
+        doc.circle(23, currentY + 1, 2, "F");
+
+        // Food Name and Best Time
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(15, 23, 42);
+        doc.text(`${food.name}   [${food.best_time_to_eat}]`, 28, currentY + 2);
+
+        // Category
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9);
+        doc.setTextColor(156, 163, 175);
+        doc.text(food.category.replace('_', ' ').toUpperCase(), 28, currentY + 7);
+
+        // Description wrapped
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(71, 85, 105);
+        const splitDesc = doc.splitTextToSize(food.description, 150);
+        doc.text(splitDesc, 28, currentY + 12);
+
+        // Avoid time
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9);
+        doc.setTextColor(239, 68, 68); // rose-500
+        doc.text(`Avoid: ${food.avoid_time}`, 28, currentY + 12 + (splitDesc.length * 4) + 1);
+
+        currentY += 12 + (splitDesc.length * 4) + 10;
+      });
+
+      doc.save(`chrononutrition-plan-${Date.now()}.pdf`);
+    } catch (err) {
+      console.error("Failed to generate PDF", err);
+      alert("Failed to generate PDF.");
+    }
+  };
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -112,29 +221,51 @@ export default function Chat() {
                   {msg.text}
                 </div>
 
-                {/* Show Recommended Foods cards */}
+                {/* Show Recommended Foods timeline */}
                 {msg.foods && msg.foods.length > 0 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    {msg.foods.map((food) => (
-                      <div
-                        key={food.id}
-                        className="p-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900 rounded-xl flex items-center justify-between gap-3 text-xs"
+                  <div className="space-y-4 pt-4 border-t border-zinc-150 dark:border-zinc-800">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">Circadian Food Timeline</span>
+                      <button
+                        onClick={() => handleDownloadPDF(msg.text, msg.foods || [])}
+                        className="text-[10px] text-emerald-500 hover:text-emerald-600 font-bold flex items-center gap-1 cursor-pointer hover:underline bg-transparent border-none p-0 outline-none"
                       >
-                        <div className="flex items-center gap-2">
-                          <span className="text-2xl">{food.image}</span>
-                          <div>
-                            <div className="font-bold text-zinc-900 dark:text-zinc-100">{food.name}</div>
-                            <div className="text-[9px] text-zinc-400 font-semibold uppercase">{food.category.replace("_", " ")}</div>
+                        <Download className="w-3.5 h-3.5" /> Download Plan (PDF)
+                      </button>
+                    </div>
+                    
+                    <div className="relative border-l border-zinc-200 dark:border-zinc-800/80 ml-3 pl-4 space-y-4">
+                      {sortFoodsChronologically(msg.foods).map((food) => (
+                        <div key={food.id} className="relative text-xs">
+                          {/* Circle dot */}
+                          <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white dark:border-zinc-900 shadow-sm" />
+                          <div className="flex items-center gap-2">
+                            <span className="font-extrabold text-[9px] text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/20 px-2 py-0.5 rounded-full flex items-center gap-0.5 uppercase tracking-wide border border-emerald-500/10">
+                              <Clock className="w-2.5 h-2.5" /> {food.best_time_to_eat.split(", ")[0] || "Anytime"}
+                            </span>
+                            <span className="font-bold text-zinc-800 dark:text-zinc-200">
+                              {food.name}
+                            </span>
+                          </div>
+                          
+                          <div className="p-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-150 dark:border-zinc-900 rounded-xl mt-1.5 flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xl shrink-0">{food.image}</span>
+                              <div>
+                                <div className="font-medium text-zinc-600 dark:text-zinc-400 text-[10px] leading-relaxed">{food.description}</div>
+                                <div className="text-[9px] text-rose-500 font-bold uppercase mt-0.5">Avoid: {food.avoid_time}</div>
+                              </div>
+                            </div>
+                            <Link
+                              href={`/encyclopedia?search=${food.name}`}
+                              className="text-[9px] text-emerald-500 font-bold flex items-center gap-0.5 hover:underline shrink-0"
+                            >
+                              Details <ArrowRight className="w-3 h-3" />
+                            </Link>
                           </div>
                         </div>
-                        <Link
-                          href={`/encyclopedia?search=${food.name}`}
-                          className="text-[10px] text-emerald-500 font-bold flex items-center gap-0.5 hover:underline shrink-0"
-                        >
-                          Details <ArrowRight className="w-3 h-3" />
-                        </Link>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
